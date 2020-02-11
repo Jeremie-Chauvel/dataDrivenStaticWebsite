@@ -1,25 +1,15 @@
 <template>
   <div class="container">
-    <div>
+    <div class="logo-container">
       <logo />
+    </div>
+    <div v-for="section in sections" :key="section.title" class="section">
       <h1 class="title">
-        cms_driven_static
+        {{ section.title }}
       </h1>
       <h2 class="subtitle">
-        My bedazzling Nuxt.js project
+        {{ section.paragraph }}
       </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
     </div>
   </div>
 </template>
@@ -32,22 +22,35 @@ export default {
     Logo
   },
   async asyncData(context) {
-    const sections = await context.app.contentfulClient.getSectionContent()
-    console.log(sections)
-
-    return {}
+    return {
+      sections: await context.app.contentfulClient.getSectionContent()
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 15px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.section {
+  margin-top: 25px;
 }
 
 .title {
@@ -55,20 +58,16 @@ export default {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 35px;
   color: #35495e;
   letter-spacing: 1px;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 21px;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
