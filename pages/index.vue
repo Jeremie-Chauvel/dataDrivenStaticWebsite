@@ -30,6 +30,12 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  async asyncData(context) {
+    const sections = await context.app.contentfulClient.getSectionContent()
+    console.log(sections.items)
+
+    return {}
   }
 }
 </script>
