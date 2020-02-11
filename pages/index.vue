@@ -33,7 +33,7 @@ export default {
   },
   async asyncData(context) {
     const sections = await context.app.contentfulClient.getSectionContent()
-    console.log(sections.items)
+    console.log(sections)
 
     return {}
   }
