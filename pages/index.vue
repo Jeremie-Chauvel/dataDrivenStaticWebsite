@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="logo-container">
-      <logo />
+      <logo-nuxt />
+      <logo-contentful />
+      <logo-netlify />
     </div>
     <div v-for="section in sections" :key="section.title" class="section">
       <h1 class="title">
@@ -15,11 +17,15 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import LogoNuxt from '~/components/LogoNuxt.vue'
+import LogoContentful from '~/components/LogoContentful.vue'
+import LogoNetlify from '~/components/LogoNetlify.vue'
 
 export default {
   components: {
-    Logo
+    LogoNuxt,
+    LogoContentful,
+    LogoNetlify
   },
   async asyncData(context) {
     return {
